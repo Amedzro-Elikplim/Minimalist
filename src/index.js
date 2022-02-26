@@ -1,18 +1,8 @@
 import './style.css';
 import { li } from '../modules/List.js';
 
-const TODOS = [
-  {
-    description: 'Washing the dishes',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'Complete To Do list project',
-    completed: false,
-    index: 1,
-  },
-];
+const storage = localStorage.getItem('list');
+const TODOS = JSON.parse(storage);
 
 const showTasks = () => {
   const ul = document.querySelector('.list-container');

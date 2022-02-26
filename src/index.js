@@ -10,6 +10,7 @@ input.addEventListener('keypress', (e) => {
   const data = input.value;
   if (e.key === 'Enter') {
     task.add(data);
+    input.value = '';
   }
 });
 

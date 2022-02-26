@@ -1,11 +1,3 @@
-const li = (description) => {
-  const li = document.createElement('li');
-  li.innerHTML = description;
-  li.className = 'list';
-
-  return li;
-};
-
 const input = (type) => {
   const input = document.createElement('input');
   input.type = type;
@@ -14,10 +6,22 @@ const input = (type) => {
 };
 
 const icon = () => {
-  const p = document.createElement('i');
-  p.innerHTML = 'icon';
+  const i = document.createElement('i');
+  i.className = 'fas fa-ellipsis-v icon';
 
-  return p;
+  return i;
+};
+
+const li = (description) => {
+  const li = document.createElement('li');
+  const div = document.createElement('div');
+
+  div.append(input('checkbox'), description);
+  li.append(div, icon());
+
+  li.className = 'list';
+  div.className = 'checkbox-description-container';
+  return li;
 };
 
 export {

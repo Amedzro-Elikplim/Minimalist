@@ -3,7 +3,7 @@ import { li } from '../modules/List.js';
 
 const TODOS = [
   {
-    description: 'Go for a walk',
+    description: 'Washing the dishes',
     completed: false,
     index: 0,
   },
@@ -16,6 +16,7 @@ const TODOS = [
 
 const showTasks = () => {
   const ul = document.querySelector('.list-container');
+  TODOS.sort((a, b) => a.index - b.index);
 
   for (let i = 0; i < TODOS.length; i += 1) {
     const task = TODOS[i];

@@ -12,24 +12,28 @@
       onload="this.onload = null; this.rel = 'stylesheet'"
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap"
     />
-    <link
+    
+      <link
       rel="preload"
-      as="style" 
+      as="style"
       onload="this.onload = null; this.rel = 'stylesheet'"
-      href="https://fonts.googleapis.com/css2?family=Kurale&display=swap">
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
     <title>Minimalist</title>
 </head>
 <body>
     <div class="todo-container">
         <div class="header">
-            <h4>Demo</h4> 
+            <h4>Today's To Do</h4> 
         </div>
         <div>
             <input type="text" class="add-list" placeholder="add to your list...">
         </div>
         <ul class="list-container"></ul>
         <footer class="footer">
-            <a href=""><h4>Clear all completed</h4></a>
+            <a href="#" class="clear-all">Clear all completed</a>
         </footer>
     </div>
 </body>

@@ -1,6 +1,6 @@
 import { input, icon } from './List.js';
 
-class Utility {
+class Task {
   constructor() {
     this.temp = 0;
     this.ul = 0;
@@ -23,6 +23,44 @@ class Utility {
     window.location.reload();
   }
 
+  makeTextEditable = (div2, li, i, ul) => {
+    if (ul.hasChildNodes()) {
+      const li = ul.children[i];
+      const div2 = li.children[0].children[1];
+      const icon = li.children[1];
+
+      div2.contentEditable = true;
+      div2.focus();
+
+      li.style.backgroundColor = 'rgb(243, 243, 243)';
+      icon.className = 'fa fa-heart';
+    }
+  };
+
+  createList = (description, i) => {
+    const li = document.createElement('li');
+    const div = document.createElement('div');
+    const div2 = document.createElement('div');
+    const ul = document.querySelector('.list-container');
+
+    li.draggable = true;
+    div2.className = 'editable';
+    div.className = 'checkbox-description-container';
+
+    div2.innerHTML = description;
+    div.append(input('checkbox'), div2);
+    li.append(div, icon('fas fa-ellipsis-v'));
+
+    li.className = 'list';
+
+    li.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.makeTextEditable(div2, li, i, ul);
+    });
+
+    return li;
+  };
+
   showTasks = () => {
     const storage = localStorage.getItem('tasks');
     const TODOS = JSON.parse(storage);
@@ -39,38 +77,6 @@ class Utility {
     }
   };
 
-makeTextEditable = (div2, li) => {
-  div2.contentEditable = true;
-  li.style.backgroundColor = 'rgb(243, 243, 243)';
-  div2.focus();
-
-  const icon = document.querySelector('.icon');
-  icon.className = 'fa fa-heart';
-};
-
-  createList = (description, i) => {
-    const li = document.createElement('li');
-    const div = document.createElement('div');
-    const div2 = document.createElement('div');
-
-    li.draggable = true;
-    div2.className = 'editable';
-    div.className = 'checkbox-description-container';
-
-    div2.innerHTML = description;
-    div.append(input('checkbox'), div2);
-    li.append(div, icon('fas fa-ellipsis-v'));
-
-    li.className = 'list';
-
-    li.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.makeTextEditable(div2, li);
-    });
-
-    return li;
-  }
-
   removeChild() {
     this.ul = document.querySelector('.list-container');
     while (this.ul.firstChild) {
@@ -78,7 +84,7 @@ makeTextEditable = (div2, li) => {
     }
   }
 
-  delete() {
+  clearAll() {
     this.removeChild();
     localStorage.clear();
   }
@@ -88,4 +94,4 @@ makeTextEditable = (div2, li) => {
   // };
 }
 
-export default Utility;
+export default Task;

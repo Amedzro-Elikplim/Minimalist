@@ -3,9 +3,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      rel="preload"
+      as="style"
+      onload="this.onload = null; this.rel = 'stylesheet'"
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap"
+    />
+    <link
+      rel="preload"
+      as="style" 
+      onload="this.onload = null; this.rel = 'stylesheet'"
+      href="https://fonts.googleapis.com/css2?family=Kurale&display=swap">
     <title>Minimalist</title>
 <script defer src="bundle.js"></script></head>
 <body>
-    <h1>Minimalist app</h1>
+    <div class="todo-container">
+        <div class="header">
+            <h4>Demo</h4> 
+        </div>
+        <div>
+            <input type="text" class="add-list" placeholder="add to your list...">
+        </div>
+        <ul class="list-container"></ul>
+        <footer class="footer">
+            <a href=""><h4>Clear all completed</h4></a>
+        </footer>
+    </div>
 </body>
 </html>

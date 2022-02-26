@@ -60,14 +60,18 @@ class Task {
     this.refresh();
   }
 
-  delete(description) {
-    this.array = JSON.parse(localStorage.getItem('tasks'));
-    const index = this.array.findIndex((item) => item.description === description);
-
+  updateIndex = (index) => {
     const num = index + 1;
     for (let i = num; i < this.array.length; i += 1) {
       this.array[i].index -= 1;
     }
+  }
+
+  delete(description) {
+    this.array = JSON.parse(localStorage.getItem('tasks'));
+    const index = this.array.findIndex((item) => item.description === description);
+
+    this.updateIndex(index);
 
     this.array.splice(index, 1);
     localStorage.setItem('tasks', JSON.stringify(this.array));

@@ -1,29 +1,22 @@
 import './style.css';
-import { li } from '../modules/List.js';
+import Task from '../modules/Task.js';
 
-const TODOS = [
-  {
-    description: 'Washing the dishes',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'Complete To Do list project',
-    completed: false,
-    index: 1,
-  },
-];
+const input = document.querySelector('.add-list');
+const clear = document.querySelector('.clear-all');
 
-const showTasks = () => {
-  const ul = document.querySelector('.list-container');
-  TODOS.sort((a, b) => a.index - b.index);
+const task = new Task();
 
-  for (let i = 0; i < TODOS.length; i += 1) {
-    const task = TODOS[i];
-    const { description } = task;
-    li(description);
-    ul.append(li(description));
+input.addEventListener('keypress', (e) => {
+  const data = input.value;
+  if (e.key === 'Enter') {
+    task.add(data);
+    input.value = '';
   }
-};
+});
 
-showTasks();
+clear.addEventListener('click', (e) => {
+  e.preventDefault();
+  task.clearAll();
+});
+
+task.showTasks();

@@ -26,19 +26,23 @@ body {
 .footer {
   padding: 20px;
   text-align: center;
-  border-top: 1px solid rgb(228, 228, 228);
-}
-
-.ul-container {
-  display: flex;
-  flex-direction: column;
 }
 
 .list {
   display: flex;
   justify-content: space-between;
-  margin: 10px;
   align-items: center;
+  border-bottom: 1px solid rgb(243, 243, 243);
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: move;
+}
+
+.editable {
+  width: 35vw;
+  padding: 20px;
+  outline: none;
+  border: none;
 }
 
 .checkbox-description-container {
@@ -48,8 +52,7 @@ body {
 }
 
 .icon {
-  color: gray;
-  cursor: pointer;
+  color: rgb(128, 128, 128);
 }
 
 .add-list {

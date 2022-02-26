@@ -1,19 +1,14 @@
 import './style.css';
-import { li } from '../modules/List.js';
+import Task from '../modules/Task.js';
 
-const storage = localStorage.getItem('list');
-const TODOS = JSON.parse(storage);
+const input = document.querySelector('.add-list');
+const task = new Task();
 
-const showTasks = () => {
-  const ul = document.querySelector('.list-container');
-  TODOS.sort((a, b) => a.index - b.index);
-
-  for (let i = 0; i < TODOS.length; i += 1) {
-    const task = TODOS[i];
-    const { description } = task;
-    li(description);
-    ul.append(li(description));
+input.addEventListener('keypress', (e) => {
+  const data = input.value;
+  if (e.key === 'Enter') {
+    task.add(data);
   }
-};
+});
 
-showTasks();
+task.showTasks();

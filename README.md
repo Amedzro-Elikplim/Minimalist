@@ -19,7 +19,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Site is live. Visit now!](https://amedzro-elikplim.github.io/Awesome-books-modular/)
+[Site is live. Visit now!](https://amedzro-elikplim.github.io/Minimalist/dist/)
 
 
 ## Getting Started

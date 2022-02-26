@@ -6,6 +6,35 @@ class Task {
     this.ul = 0;
     this.tasks = [];
     this.array = [];
+    this.num = 0;
+  }
+
+  showTasks = () => {
+    const storage = localStorage.getItem('tasks');
+    const TODOS = storage ? JSON.parse(storage) : [];
+
+    const ul = document.querySelector('.list-container');
+    TODOS.sort((a, b) => a.index - b.index);
+
+    for (let i = 0; i < TODOS.length; i += 1) {
+      const task = TODOS[i];
+      const { description } = task;
+
+      const li = this.createList(description, i);
+      ul.appendChild(li);
+    }
+  };
+
+  removeChild() {
+    this.ul = document.querySelector('.list-container');
+    while (this.ul.firstChild) {
+      this.ul.removeChild(this.ul.firstChild);
+    }
+  }
+
+  refresh() {
+    this.removeChild();
+    this.showTasks();
   }
 
   add(data) {
@@ -20,9 +49,7 @@ class Task {
 
     arr.push(info);
     localStorage.setItem('tasks', JSON.stringify(arr));
-    this.showTasks();
-
-    window.location.reload();
+    this.refresh();
   }
 
   update(description, i) {
@@ -30,17 +57,21 @@ class Task {
     this.tasks[i].description = description;
 
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    this.refresh();
   }
 
   delete(description) {
-    this.t = 0;
-    const array = JSON.parse(localStorage.getItem('tasks'));
-    const index = array.findIndex((item) => item.description === description);
+    this.array = JSON.parse(localStorage.getItem('tasks'));
+    const index = this.array.findIndex((item) => item.description === description);
 
-    array.splice(index, 1);
-    console.log(array);
+    const num = index + 1;
+    for (let i = num; i < this.array.length; i += 1) {
+      this.array[i].index -= 1;
+    }
 
-    localStorage.setItem('tasks', JSON.stringify(array));
+    this.array.splice(index, 1);
+    localStorage.setItem('tasks', JSON.stringify(this.array));
+    this.refresh();
   }
 
   makeTextEditable = (i, ul) => {
@@ -52,7 +83,7 @@ class Task {
       div2.contentEditable = true;
       div2.focus();
 
-      li.style.backgroundColor = 'rgb(243, 243, 243)';
+      li.style.backgroundColor = 'rgb(245, 248, 201)';
       icon.className = 'far fa-trash-alt';
 
       div2.addEventListener('keypress', (e) => {
@@ -91,31 +122,18 @@ class Task {
       this.makeTextEditable(i, ul);
     });
 
+    const checkbox = li.children[0].children[0];
+    checkbox.addEventListener('change', () => {
+      const description = li.children[0].children[1];
+      if (checkbox.checked) {
+        description.style.textDecoration = 'line-through';
+      } else {
+        description.style.textDecoration = 'none';
+      }
+    });
+
     return li;
   };
-
-  showTasks = () => {
-    const storage = localStorage.getItem('tasks');
-    const TODOS = JSON.parse(storage);
-
-    const ul = document.querySelector('.list-container');
-    TODOS.sort((a, b) => a.index - b.index);
-
-    for (let i = 0; i < TODOS.length; i += 1) {
-      const task = TODOS[i];
-      const { description } = task;
-
-      const li = this.createList(description, i);
-      ul.appendChild(li);
-    }
-  };
-
-  removeChild() {
-    this.ul = document.querySelector('.list-container');
-    while (this.ul.firstChild) {
-      this.ul.removeChild(this.ul.firstChild);
-    }
-  }
 
   clearAll() {
     this.removeChild();

@@ -9,9 +9,6 @@ body {
 }
 
 .todo-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   width: 40vw;
   margin-left: auto;
   margin-right: auto;
@@ -21,7 +18,6 @@ body {
 
 .header {
     border-bottom: 1px solid rgb(228, 228, 228);
-    font-family: Kurale, sans-serif !important;
     vertical-align: middle;
     padding: 20px;
     font-size: large;
@@ -33,18 +29,31 @@ body {
     vertical-align: center;
     text-align: center;
     border-top: 1px solid rgb(228, 228, 228);
+
 }
 
-.list-container {
+.ul-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 50px;
-    
 }
 
+
 .list {
-    
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  align-items: center;
+}
+
+.checkbox-description-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.icon {
+    color: gray;
+    cursor: pointer;
 }
 
 .add-list {
@@ -58,4 +67,8 @@ body {
     border-top: none;
     border-right: none;
     font-size: large;
+}
+
+.clear-all {
+    color: gray;
 }

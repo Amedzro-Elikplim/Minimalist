@@ -1,5 +1,5 @@
 import './style.css';
-import { li, input, icon } from '../modules/List.js';
+import { li } from '../modules/List.js';
 
 const TODOS = [
   {
@@ -20,8 +20,8 @@ const showTasks = () => {
   for (let i = 0; i < TODOS.length; i += 1) {
     const task = TODOS[i];
     const { description } = task;
-    li().append(input('checkbox'), icon());
-    ul.appendChild(li(description));
+    li(description);
+    ul.append(li(description));
   }
 };
 

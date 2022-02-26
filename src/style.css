@@ -1,7 +1,7 @@
 * {
-   box-sizing: border-box;
-   margin: 0;
-   padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -17,26 +17,23 @@ body {
 }
 
 .header {
-    border-bottom: 1px solid rgb(228, 228, 228);
-    vertical-align: middle;
-    padding: 20px;
-    font-size: large;
+  border-bottom: 1px solid rgb(228, 228, 228);
+  vertical-align: middle;
+  padding: 20px;
+  font-size: large;
 }
 
-
 .footer {
-    padding: 20px;
-    vertical-align: center;
-    text-align: center;
-    border-top: 1px solid rgb(228, 228, 228);
-
+  padding: 20px;
+  vertical-align: center;
+  text-align: center;
+  border-top: 1px solid rgb(228, 228, 228);
 }
 
 .ul-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-
 
 .list {
   display: flex;
@@ -46,29 +43,29 @@ body {
 }
 
 .checkbox-description-container {
-    display: flex;
-    gap: 15px;
-    align-items: center;
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
 .icon {
-    color: gray;
-    cursor: pointer;
+  color: gray;
+  cursor: pointer;
 }
 
 .add-list {
-    width: 100%;
-    padding: 20px;
-    font-family: Raleway, sans-serif;
-    font-style: italic;
-    border-bottom: 1px solid rgb(228, 228, 228);
-    outline: none;
-    border-left: none;
-    border-top: none;
-    border-right: none;
-    font-size: large;
+  width: 100%;
+  padding: 20px;
+  font-family: Raleway, sans-serif;
+  font-style: italic;
+  border-bottom: 1px solid rgb(228, 228, 228);
+  outline: none;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  font-size: large;
 }
 
 .clear-all {
-    color: gray;
+  color: gray;
 }

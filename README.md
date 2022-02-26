@@ -35,7 +35,7 @@ To get a local copy up and running follow these simple example steps.
 ### Setup
 
 - clone repository using `git clone`
-- git clone `https://amedzro-elikplim.github.io/Minimalist/dist`
+- git clone `https://github.com/Amedzro-Elikplim/Minimalist`
 - cd `Minimalist`.
 - run `npm install`
 - run `npm run start` to start webpack dev server

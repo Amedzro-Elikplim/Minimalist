@@ -20,6 +20,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./modules/Task.js":
+/*!*************************!*\
+  !*** ./modules/Task.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _List_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./List.js */ \"./modules/List.js\");\n\n\nclass Utility {\n  constructor() {\n    this.temp = 0;\n  }\n\n  add(data) {\n    this.temp = localStorage.getItem('tasks');\n    const arr = this.temp ? JSON.parse(this.temp) : [];\n\n    const info = {\n      description: data,\n      index: arr.length + 1,\n      completed: false,\n    };\n\n    arr.push(info);\n    localStorage.setItem('tasks', JSON.stringify(arr));\n    this.showTasks();\n\n    window.location.reload();\n  }\n\n  showTasks = () => {\n    const storage = localStorage.getItem('tasks');\n    const TODOS = JSON.parse(storage);\n\n    const ul = document.querySelector('.list-container');\n    TODOS.sort((a, b) => a.index - b.index);\n\n    for (let i = 0; i < TODOS.length; i += 1) {\n      const task = TODOS[i];\n      const { description } = task;\n      (0,_List_js__WEBPACK_IMPORTED_MODULE_0__.li)(description);\n      ul.append((0,_List_js__WEBPACK_IMPORTED_MODULE_0__.li)(description));\n    }\n  };\n\n  // delete() {\n  // };\n\n  // update() {\n\n  // };\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Utility);\n\n//# sourceURL=webpack://Minimalist/./modules/Task.js?");
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/style.css":
 /*!*************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/style.css ***!
@@ -126,7 +136,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_List_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/List.js */ \"./modules/List.js\");\n\n\n\nconst storage = localStorage.getItem('list');\nconst TODOS = JSON.parse(storage);\n\nconst showTasks = () => {\n  const ul = document.querySelector('.list-container');\n  TODOS.sort((a, b) => a.index - b.index);\n\n  for (let i = 0; i < TODOS.length; i += 1) {\n    const task = TODOS[i];\n    const { description } = task;\n    (0,_modules_List_js__WEBPACK_IMPORTED_MODULE_1__.li)(description);\n    ul.append((0,_modules_List_js__WEBPACK_IMPORTED_MODULE_1__.li)(description));\n  }\n};\n\nshowTasks();\n\n//# sourceURL=webpack://Minimalist/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_Task_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/Task.js */ \"./modules/Task.js\");\n\n\n\nconst input = document.querySelector('.add-list');\nconst task = new _modules_Task_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n\ninput.addEventListener('keypress', (e) => {\n  const data = input.value;\n  if (e.key === 'Enter') {\n    task.add(data);\n  }\n});\n\ntask.showTasks();\n\n\n//# sourceURL=webpack://Minimalist/./src/index.js?");
 
 /***/ })
 

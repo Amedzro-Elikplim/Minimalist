@@ -3,7 +3,7 @@ import { li } from '../modules/List.js';
 
 const TODOS = [
   {
-    description: 'Washing the dishes',
+    description: 'Go for a walk',
     completed: false,
     index: 0,
   },

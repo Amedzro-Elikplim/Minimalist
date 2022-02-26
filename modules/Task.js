@@ -4,6 +4,7 @@ class Task {
   constructor() {
     this.temp = 0;
     this.ul = 0;
+    this.tasks = 0;
   }
 
   add(data) {
@@ -23,7 +24,14 @@ class Task {
     window.location.reload();
   }
 
-  makeTextEditable = (div2, li, i, ul) => {
+  update(description, i) {
+    this.tasks = JSON.parse(localStorage.getItem('tasks'));
+    this.tasks[i].description = description;
+
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
+  makeTextEditable = (i, ul) => {
     if (ul.hasChildNodes()) {
       const li = ul.children[i];
       const div2 = li.children[0].children[1];
@@ -32,8 +40,15 @@ class Task {
       div2.contentEditable = true;
       div2.focus();
 
+      div2.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          const description = div2.innerHTML;
+          this.update(description, i);
+        }
+      });
+
       li.style.backgroundColor = 'rgb(243, 243, 243)';
-      icon.className = 'fa fa-heart';
+      icon.className = 'far fa-trash-alt';
     }
   };
 
@@ -53,9 +68,9 @@ class Task {
 
     li.className = 'list';
 
-    li.addEventListener('click', (e) => {
+    li.addEventListener('drag', (e) => {
       e.preventDefault();
-      this.makeTextEditable(div2, li, i, ul);
+      this.makeTextEditable(i, ul);
     });
 
     return li;

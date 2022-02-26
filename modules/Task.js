@@ -101,6 +101,12 @@ class Task {
     }
   };
 
+  checked = (option, i) => {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    tasks[i].completed = option;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+
   createList = (description, i) => {
     const li = document.createElement('li');
     const div = document.createElement('div');
@@ -127,8 +133,10 @@ class Task {
       const description = li.children[0].children[1];
       if (checkbox.checked) {
         description.style.textDecoration = 'line-through';
+        this.checked(true, i);
       } else {
         description.style.textDecoration = 'none';
+        this.checked(false, i);
       }
     });
 

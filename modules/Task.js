@@ -4,7 +4,8 @@ class Task {
   constructor() {
     this.temp = 0;
     this.ul = 0;
-    this.tasks = 0;
+    this.tasks = [];
+    this.array = [];
   }
 
   add(data) {
@@ -31,6 +32,17 @@ class Task {
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
+  delete(description) {
+    this.t = 0;
+    const array = JSON.parse(localStorage.getItem('tasks'));
+    const index = array.findIndex((item) => item.description === description);
+
+    array.splice(index, 1);
+    console.log(array);
+
+    localStorage.setItem('tasks', JSON.stringify(array));
+  }
+
   makeTextEditable = (i, ul) => {
     if (ul.hasChildNodes()) {
       const li = ul.children[i];
@@ -40,6 +52,9 @@ class Task {
       div2.contentEditable = true;
       div2.focus();
 
+      li.style.backgroundColor = 'rgb(243, 243, 243)';
+      icon.className = 'far fa-trash-alt';
+
       div2.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
           const description = div2.innerHTML;
@@ -47,8 +62,11 @@ class Task {
         }
       });
 
-      li.style.backgroundColor = 'rgb(243, 243, 243)';
-      icon.className = 'far fa-trash-alt';
+      icon.addEventListener('click', (e) => {
+        e.preventDefault();
+        const description = div2.innerHTML;
+        this.delete(description);
+      });
     }
   };
 
@@ -68,7 +86,7 @@ class Task {
 
     li.className = 'list';
 
-    li.addEventListener('drag', (e) => {
+    li.addEventListener('dragend', (e) => {
       e.preventDefault();
       this.makeTextEditable(i, ul);
     });
@@ -103,10 +121,6 @@ class Task {
     this.removeChild();
     localStorage.clear();
   }
-
-  // update() {
-
-  // };
 }
 
 export default Task;

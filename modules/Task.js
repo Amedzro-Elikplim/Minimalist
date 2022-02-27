@@ -60,14 +60,18 @@ class Task {
     this.refresh();
   }
 
-  delete(description) {
-    this.array = JSON.parse(localStorage.getItem('tasks'));
-    const index = this.array.findIndex((item) => item.description === description);
-
+  updateIndex = (index) => {
     const num = index + 1;
     for (let i = num; i < this.array.length; i += 1) {
       this.array[i].index -= 1;
     }
+  }
+
+  delete(description) {
+    this.array = JSON.parse(localStorage.getItem('tasks'));
+    const index = this.array.findIndex((item) => item.description === description);
+
+    this.updateIndex(index);
 
     this.array.splice(index, 1);
     localStorage.setItem('tasks', JSON.stringify(this.array));
@@ -101,6 +105,12 @@ class Task {
     }
   };
 
+  checked = (option, i) => {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    tasks[i].completed = option;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+
   createList = (description, i) => {
     const li = document.createElement('li');
     const div = document.createElement('div');
@@ -127,17 +137,28 @@ class Task {
       const description = li.children[0].children[1];
       if (checkbox.checked) {
         description.style.textDecoration = 'line-through';
+        this.checked(true, i);
       } else {
         description.style.textDecoration = 'none';
+        this.checked(false, i);
       }
     });
 
     return li;
   };
 
-  clearAll() {
-    this.removeChild();
-    localStorage.clear();
+  removeCompleted = () => {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+
+    const result = tasks.filter((item) => item.completed === true);
+
+    for (let i = 0; i < result.length; i += 1) {
+      this.delete(result[i].description);
+    }
+  }
+
+  clearCompleted() {
+    this.removeCompleted();
   }
 }
 

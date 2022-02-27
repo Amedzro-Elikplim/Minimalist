@@ -16,7 +16,7 @@ input.addEventListener('keypress', (e) => {
 
 clear.addEventListener('click', (e) => {
   e.preventDefault();
-  task.clearAll();
+  task.clearCompleted();
 });
 
 task.showTasks();

@@ -147,9 +147,18 @@ class Task {
     return li;
   };
 
-  clearAll() {
-    this.removeChild();
-    localStorage.clear();
+  removeCompleted = () => {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+
+    const result = tasks.filter((item) => item.completed === true);
+
+    for (let i = 0; i < result.length; i += 1) {
+      this.delete(result[i].description);
+    }
+  }
+
+  clearCompleted() {
+    this.removeCompleted();
   }
 }
 

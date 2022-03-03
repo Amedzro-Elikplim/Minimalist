@@ -1,5 +1,5 @@
-// import Task from '../modules/Task.js';
 const Task = require('./modules/Task.js');
+const { saveToLocalStorage } = require('./modules/Storage.js');
 
 describe('updateIndex', () => {
   const array = [
@@ -41,5 +41,48 @@ describe('updateIndex', () => {
 });
 
 describe('add', () => {
+  const mockLocalStorage = (() => {
+    let store = {};
 
+    return {
+      getItem(key) {
+        return store[key] || null;
+      },
+      setItem(key, value) {
+        store[key] = value.toString();
+      },
+      clear() {
+        store = {};
+      },
+    };
+  })();
+
+  const array = [
+    {
+      description: 'Go to work',
+      index: 1,
+      completed: false,
+    },
+    {
+      description: 'Go to School',
+      index: 2,
+      completed: false,
+    },
+    {
+      description: 'Go to home',
+      index: 3,
+      completed: false,
+    },
+  ];
+
+  beforeAll(() => {
+    Object.defineProperty(window, 'localStorage', {
+      value: mockLocalStorage,
+    });
+  });
+
+  test('save to localStorage', () => {
+    saveToLocalStorage('tasks', array);
+    expect(JSON.parse(window.localStorage.getItem('tasks'))).toEqual(array);
+  });
 });

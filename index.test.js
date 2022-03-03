@@ -37,3 +37,15 @@ test('Test updateIndex', () => {
   expect(testTask.updateIndex(0, array)).toContainEqual(result1);
   expect(testTask.updateIndex(1, array)).toContainEqual(result2);
 });
+
+test('Delete function', ()=> {
+  const testTaskResult = [
+    {
+      description: 'Go to work',
+      index: 1,
+      completed: false,
+    },
+  ];
+  
+  expect(testTask.delete('Go to work'), array).not.toContainEqual(testTaskResult);
+})

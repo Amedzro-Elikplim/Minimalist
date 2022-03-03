@@ -69,15 +69,16 @@ class Task {
     return array;
   }
 
-  delete(description) {
-    this.array = JSON.parse(localStorage.getItem('tasks'));
-    const index = this.array.findIndex((item) => item.description === description);
+  delete(description, array) {
+    array = JSON.parse(localStorage.getItem('tasks'));
+    const index = array.findIndex((item) => item.description === description);
 
-    this.updateIndex(index, this.array);
+    this.updateIndex(index, array);
 
-    this.array.splice(index, 1);
-    localStorage.setItem('tasks', JSON.stringify(this.array));
+    array.splice(index, 1);
+    localStorage.setItem('tasks', JSON.stringify(array));
     this.refresh();
+    return array;
   }
 
   makeTextEditable = (i, ul) => {
@@ -101,8 +102,9 @@ class Task {
 
       icon.addEventListener('click', (e) => {
         e.preventDefault();
+        const array = JSON.parse(localStorage.getItem('tasks'));
         const description = div2.innerHTML;
-        this.delete(description);
+        this.delete(description, array);
       });
     }
   };

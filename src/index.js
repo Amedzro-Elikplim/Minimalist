@@ -1,5 +1,6 @@
 import './style.css';
-import Task from '../modules/Task.js';
+// import {Task} from '../modules/Task.js';
+const Task = require('../modules/Task.js');
 
 const input = document.querySelector('.add-list');
 const clear = document.querySelector('.clear-all');

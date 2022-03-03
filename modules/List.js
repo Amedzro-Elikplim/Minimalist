@@ -12,7 +12,9 @@ const icon = (name) => {
   return i;
 };
 
-export {
-  input,
-  icon,
-};
+// export {
+//   input,
+//   icon,
+// };
+
+module.exports = {input, icon};

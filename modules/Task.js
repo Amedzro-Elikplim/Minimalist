@@ -1,4 +1,5 @@
-import { input, icon } from './List.js';
+// import { input, icon } from './List.js';
+const { input, icon } = require('./List.js')
 
 class Task {
   constructor() {
@@ -65,6 +66,7 @@ class Task {
     for (let i = num; i < this.array.length; i += 1) {
       this.array[i].index -= 1;
     }
+    return this.array.length;
   }
 
   delete(description) {
@@ -162,4 +164,5 @@ class Task {
   }
 }
 
-export default Task;
+// export default Task;
+module.exports = Task;

@@ -17,4 +17,4 @@ const icon = (name) => {
 //   icon,
 // };
 
-module.exports = {input, icon};
+module.exports = { input, icon };

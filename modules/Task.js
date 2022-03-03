@@ -1,5 +1,5 @@
 // import { input, icon } from './List.js';
-const { input, icon } = require('./List.js')
+const { input, icon } = require('./List.js');
 
 class Task {
   constructor() {
@@ -61,19 +61,19 @@ class Task {
     this.refresh();
   }
 
-  updateIndex = (index) => {
+  updateIndex = (index, array) => {
     const num = index + 1;
-    for (let i = num; i < this.array.length; i += 1) {
-      this.array[i].index -= 1;
+    for (let i = num; i < array.length; i += 1) {
+      array[i].index -= 1;
     }
-    return this.array.length;
+    return array;
   }
 
   delete(description) {
     this.array = JSON.parse(localStorage.getItem('tasks'));
     const index = this.array.findIndex((item) => item.description === description);
 
-    this.updateIndex(index);
+    this.updateIndex(index, this.array);
 
     this.array.splice(index, 1);
     localStorage.setItem('tasks', JSON.stringify(this.array));

@@ -1,5 +1,5 @@
-// import { input, icon } from './List.js';
 const { input, icon } = require('./List.js');
+const { saveToLocalStorage, getFromLocalStorage } = require('./Storage.js');
 
 class Task {
   constructor() {
@@ -11,8 +11,8 @@ class Task {
   }
 
   showTasks = () => {
-    const storage = localStorage.getItem('tasks');
-    const TODOS = storage ? JSON.parse(storage) : [];
+    const storage = getFromLocalStorage('tasks');
+    const TODOS = storage || [];
 
     const ul = document.querySelector('.list-container');
     TODOS.sort((a, b) => a.index - b.index);
@@ -39,8 +39,8 @@ class Task {
   }
 
   add(data) {
-    this.temp = localStorage.getItem('tasks');
-    const arr = this.temp ? JSON.parse(this.temp) : [];
+    this.temp = getFromLocalStorage('tasks');
+    const arr = this.temp || [];
 
     const info = {
       description: data,
@@ -49,15 +49,15 @@ class Task {
     };
 
     arr.push(info);
-    localStorage.setItem('tasks', JSON.stringify(arr));
+    saveToLocalStorage('tasks', arr);
     this.refresh();
   }
 
   update(description, i) {
-    this.tasks = JSON.parse(localStorage.getItem('tasks'));
+    this.tasks = getFromLocalStorage('tasks');
     this.tasks[i].description = description;
 
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    saveToLocalStorage('tasks', this.tasks);
     this.refresh();
   }
 
@@ -70,14 +70,13 @@ class Task {
   }
 
   delete(description, array) {
-    array = JSON.parse(localStorage.getItem('tasks'));
     const index = array.findIndex((item) => item.description === description);
-
     this.updateIndex(index, array);
-
     array.splice(index, 1);
-    localStorage.setItem('tasks', JSON.stringify(array));
+
+    saveToLocalStorage('tasks', array);
     this.refresh();
+
     return array;
   }
 
@@ -102,17 +101,17 @@ class Task {
 
       icon.addEventListener('click', (e) => {
         e.preventDefault();
-        const array = JSON.parse(localStorage.getItem('tasks'));
+        this.array = getFromLocalStorage('tasks');
         const description = div2.innerHTML;
-        this.delete(description, array);
+        this.delete(description, this.array);
       });
     }
   };
 
   checked = (option, i) => {
-    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    const tasks = getFromLocalStorage('tasks');
     tasks[i].completed = option;
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    saveToLocalStorage('tasks', tasks);
   }
 
   createList = (description, i) => {
@@ -152,13 +151,9 @@ class Task {
   };
 
   removeCompleted = () => {
-    const tasks = JSON.parse(localStorage.getItem('tasks'));
-
-    const result = tasks.filter((item) => item.completed === true);
-
-    for (let i = 0; i < result.length; i += 1) {
-      this.delete(result[i].description);
-    }
+    const tasks = getFromLocalStorage('tasks');
+    tasks.filter((item) => item.completed === true)
+      .forEach((item) => this.delete(item.description, tasks));
   }
 
   clearCompleted() {
@@ -166,5 +161,4 @@ class Task {
   }
 }
 
-// export default Task;
 module.exports = Task;

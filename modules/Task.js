@@ -154,6 +154,8 @@ class Task {
     const tasks = getFromLocalStorage('tasks');
     tasks.filter((item) => item.completed === true)
       .forEach((item) => this.delete(item.description, tasks));
+      const returnedTasks = getFromLocalStorage('tasks');
+      return returnedTasks;
   }
 
   clearCompleted() {

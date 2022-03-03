@@ -86,3 +86,27 @@ describe('add', () => {
     expect(JSON.parse(window.localStorage.getItem('tasks'))).toEqual(array);
   });
 });
+
+describe('cleare all checked', () => {
+  test('', () => {
+    const testTask = new Task();
+    const testArray = [
+      {
+        description: 'Go to work',
+        index: 1,
+        completed: false,
+      },
+      {
+        description: 'Go to School',
+        index: 2,
+        completed: true,
+      },
+      {
+        description: 'Go to home',
+        index: 3,
+        completed: true,
+      },
+    ];
+    expect(testTask.removeCompleted()).toContain(testArray.filter((e) => e.completed === false));
+  })
+})

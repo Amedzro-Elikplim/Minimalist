@@ -60,8 +60,7 @@ class Task {
     saveToLocalStorage('tasks', this.tasks);
     this.refresh();
 
-    const updated = this.tasks[i];
-    return updated;
+    return this.tasks[i];
   }
 
   updateIndex = (index, array) => {
@@ -116,8 +115,7 @@ class Task {
     tasks[i].completed = option;
     saveToLocalStorage('tasks', tasks);
 
-    const status = tasks[i].completed;
-    return status;
+    return tasks[i].completed;
   }
 
   createList = (description, i) => {

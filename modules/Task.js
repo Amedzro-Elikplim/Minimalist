@@ -59,6 +59,9 @@ class Task {
 
     saveToLocalStorage('tasks', this.tasks);
     this.refresh();
+
+    const updated = this.tasks[i];
+    return updated;
   }
 
   updateIndex = (index, array) => {
@@ -112,6 +115,9 @@ class Task {
     const tasks = getFromLocalStorage('tasks');
     tasks[i].completed = option;
     saveToLocalStorage('tasks', tasks);
+
+    const status = tasks[i].completed;
+    return status;
   }
 
   createList = (description, i) => {
@@ -154,8 +160,9 @@ class Task {
     const tasks = getFromLocalStorage('tasks');
     tasks.filter((item) => item.completed === true)
       .forEach((item) => this.delete(item.description, tasks));
-      const returnedTasks = getFromLocalStorage('tasks');
-      return returnedTasks;
+
+    const task = getFromLocalStorage('tasks');
+    return task;
   }
 
   clearCompleted() {

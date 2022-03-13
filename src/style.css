@@ -9,7 +9,7 @@ body {
 }
 
 .todo-container {
-  width: 40vw;
+  width: 70vw;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 1px 1px 10px gray;
@@ -40,16 +40,10 @@ body {
 }
 
 .editable {
-  width: 35vw;
+  width: 40vw;
   padding: 20px;
   outline: none;
   border: none;
-}
-
-.checkbox-description-container {
-  display: flex;
-  gap: 15px;
-  align-items: center;
 }
 
 .icon {
@@ -57,8 +51,8 @@ body {
 }
 
 .add-list {
-  width: 100%;
-  padding: 20px;
+  width: 70%;
+  padding: 10px;
   font-family: Raleway, sans-serif;
   font-style: italic;
   border-bottom: 1px solid rgb(228, 228, 228);
@@ -71,4 +65,29 @@ body {
 
 .clear-all {
   color: gray;
+}
+
+.checkbox-description-container {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .todo-container {
+    width: 40vw;
+  }
+
+  .editable {
+    width: 35vw;
+  }
+
+  .checkbox-description-container {
+    gap: 15px;
+  }
+
+  .add-list {
+    width: 100%;
+    padding: 20px;
+  }
 }

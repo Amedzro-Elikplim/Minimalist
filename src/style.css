@@ -69,29 +69,26 @@ body {
 }
 
 .checkbox-description-container {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-  }
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
 
 @media (min-width: 768px) {
   .todo-container {
     width: 40vw;
   }
-  
+
   .editable {
     width: 35vw;
   }
-  
+
   .checkbox-description-container {
     gap: 15px;
   }
-  
+
   .add-list {
     width: 100%;
     padding: 20px;
-    
-}
-
-
+  }
 }

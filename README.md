@@ -28,7 +28,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-- Knowledge on basic html and css
+- Knowledge on basic html5 and css3
 - Text Editor (VScode, Atom, Sublime text, etc)
 - Basic knowledge of node.js
 
